@@ -62,7 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\moveCam.cs" />
+    <Compile Include="Assets\Scripts\moveCam.cs" />
+    <Compile Include="Assets\Scripts\moveOrb.cs" />
+    <Compile Include="Assets\Scripts\SwipeManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Animals run/Animal endless runners/Animal runner/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
