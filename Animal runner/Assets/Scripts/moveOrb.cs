@@ -25,7 +25,8 @@ public class moveOrb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, Gamemanager.verVelocity, speed);
+        int y = 0;
+        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, y, speed);
         //GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, Gamemanager.verVelocity, speed);
         if (SwipeManager.IsSwipingLeft() && laneNum > 1 && controlLocked == "n")
         {
@@ -41,6 +42,7 @@ public class moveOrb : MonoBehaviour
             laneNum += 1;
             controlLocked = "y";
         }
+        
     }
 
     IEnumerator stopSlide()
@@ -68,13 +70,18 @@ public class moveOrb : MonoBehaviour
         {
             //เพิ่มบางอย่างตรงนี้ก็ได้
            
-            if (Gamemanager.HeartTotal < 3)
-            {
-                Gamemanager.HeartTotal += 1;
-            }
+            //if (Gamemanager.HeartTotal < 3) Gamemanager.HeartTotal += 1;
             Destroy(other.gameObject);
             Gamemanager.coinTotal += 1;
         }
+        if (other.gameObject.tag == "grass")
+        {
+            Destroy(other.gameObject);
+            if (Gamemanager.HeartTotal < 3)
+                Gamemanager.HeartTotal += 1;
+           
+        }
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -84,7 +91,6 @@ public class moveOrb : MonoBehaviour
         }
         if (other.gameObject.name == "ramTopTrigger")
         {
-            Debug.Log("k");
             Gamemanager.verVelocity = 0;
         }
         if(other.gameObject.name == "exit")

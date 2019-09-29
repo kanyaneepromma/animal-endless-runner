@@ -13,6 +13,13 @@ public class Effects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, 6);
+        if (gameObject.tag == "coin")
+        {
+            transform.Rotate(0, 0, 6);
+        }
+        if (gameObject.tag == "grass")
+        {
+            transform.Rotate(0, 6, 0);
+        }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - lethal
   - coin
+  - grass
   layers:
   - Default
   - TransparentFX

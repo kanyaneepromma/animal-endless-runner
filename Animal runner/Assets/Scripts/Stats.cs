@@ -26,11 +26,11 @@ public class Stats : MonoBehaviour
        
         if (gameObject.name == "coinText")
         {
-            GetComponent<Text>().text = "Coins : " + Gamemanager.coinTotal;
+            GetComponent<Text>().text = "Coin: " + Gamemanager.coinTotal;
         }
         if (gameObject.name == "timeText")
         {
-            GetComponent<Text>().text = "Time Total : " + Gamemanager.timeTotal;
+            GetComponent<Text>().text = "Time: " + Gamemanager.timeTotal;
         }
         if (gameObject.name == "heartText")
         {
@@ -38,7 +38,7 @@ public class Stats : MonoBehaviour
         }
         if (SwipeManager.IsSwipingUp())
         {
-            SceneManager.LoadScene("Scene1");
+            //SceneManager.LoadScene("gameScene");
         }
 
     }
