@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class moveOrb : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class moveOrb : MonoBehaviour
 
     //ล็อคการควบคุม
     public string controlLocked = "n";
+
+    public Transform bombObj;
     
     // Start is called before the first frame update
     void Start()
@@ -22,7 +26,7 @@ public class moveOrb : MonoBehaviour
     void Update()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, Gamemanager.verVelocity, speed);
-
+        //GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, Gamemanager.verVelocity, speed);
         if (SwipeManager.IsSwipingLeft() && laneNum > 1 && controlLocked == "n")
         {
             horiVelocity = -2;
@@ -49,12 +53,27 @@ public class moveOrb : MonoBehaviour
     {
         if(other.gameObject.tag == "lethal")
         {
-            Destroy(gameObject);
+            Destroy(other.gameObject);
+            Gamemanager.HeartTotal -= 1;
+            Instantiate(bombObj, transform.position,bombObj.rotation);
+            
+            if(Gamemanager.HeartTotal < 1)
+            {
+                Destroy(gameObject);
+                Gamemanager.forward = 0;
+                Gamemanager.lvlStatus = "f";
+            }
         }
         if(other.gameObject.tag == "coin")
         {
             //เพิ่มบางอย่างตรงนี้ก็ได้
+           
+            if (Gamemanager.HeartTotal < 3)
+            {
+                Gamemanager.HeartTotal += 1;
+            }
             Destroy(other.gameObject);
+            Gamemanager.coinTotal += 1;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -67,6 +86,10 @@ public class moveOrb : MonoBehaviour
         {
             Debug.Log("k");
             Gamemanager.verVelocity = 0;
+        }
+        if(other.gameObject.name == "exit")
+        {
+            SceneManager.LoadScene("Level Complete");
         }
         
     }
