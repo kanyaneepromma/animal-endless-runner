@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class moveOrb : MonoBehaviour
 {
-
+    public float speed;
     public float horiVelocity = 0;
     //เก็บไว้ในเลน
     public int laneNum = 2;
@@ -21,7 +21,7 @@ public class moveOrb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, 0, 2);
+        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, 0, speed);
 
         if (SwipeManager.IsSwipingLeft() && laneNum > 1 && controlLocked == "n")
         {
@@ -50,6 +50,11 @@ public class moveOrb : MonoBehaviour
         if(other.gameObject.tag == "lethal")
         {
             Destroy(gameObject);
+        }
+        if(other.gameObject.tag == "coin")
+        {
+            //เพิ่มบางอย่างตรงนี้ก็ได้
+            Destroy(other.gameObject);
         }
     }
 }
