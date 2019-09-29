@@ -21,7 +21,7 @@ public class moveOrb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, 0, 1);
+        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, 0, 2);
 
         if (SwipeManager.IsSwipingLeft() && laneNum > 1 && controlLocked == "n")
         {
@@ -44,5 +44,12 @@ public class moveOrb : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         horiVelocity = 0;
         controlLocked = "n";
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "lethal")
+        {
+            Destroy(gameObject);
+        }
     }
 }
