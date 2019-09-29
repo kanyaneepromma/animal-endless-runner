@@ -62,7 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Effects.cs" />
+    <Compile Include="Assets\Scripts\Effects.cs" />
+    <Compile Include="Assets\Scripts\Game manager.cs" />
     <Compile Include="Assets\Scripts\moveCam.cs" />
     <Compile Include="Assets\Scripts\moveOrb.cs" />
     <Compile Include="Assets\Scripts\SwipeManager.cs" />

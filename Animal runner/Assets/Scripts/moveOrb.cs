@@ -21,7 +21,7 @@ public class moveOrb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, 0, speed);
+        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, Gamemanager.verVelocity, speed);
 
         if (SwipeManager.IsSwipingLeft() && laneNum > 1 && controlLocked == "n")
         {
@@ -56,5 +56,18 @@ public class moveOrb : MonoBehaviour
             //เพิ่มบางอย่างตรงนี้ก็ได้
             Destroy(other.gameObject);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "ramButtomTrigger")
+        {
+            Gamemanager.verVelocity = 2;
+        }
+        if (other.gameObject.name == "ramTopTrigger")
+        {
+            Debug.Log("k");
+            Gamemanager.verVelocity = 0;
+        }
+        
     }
 }
