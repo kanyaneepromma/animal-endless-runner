@@ -26,8 +26,10 @@ public class moveOrb : MonoBehaviour
     void Update()
     {
         int y = 0;
-        GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, y, speed);
+        //GetComponent<Rigidbody>().AddForce(horiVelocity,y,speed,ForceMode.Acceleration);
+        
         //GetComponent<Rigidbody>().velocity = new Vector3(horiVelocity, Gamemanager.verVelocity, speed);
+        GetComponent<Rigidbody>().AddForce(horiVelocity,0f,speed , ForceMode.Force );
         if (SwipeManager.IsSwipingLeft() && laneNum > 1 && controlLocked == "n")
         {
             horiVelocity = -2;

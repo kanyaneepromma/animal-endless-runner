@@ -18,10 +18,13 @@ public class Gamemanager : MonoBehaviour
     public Transform coins;
     public Transform Obj;
     public Transform grasses;
+    public Transform mist;
+    
 
     public int zStart;
     public int zTarget;
     int z = 1;
+    int RandomMist = 0;
     //zScene += 5
 
     // Start is called before the first frame update
@@ -69,11 +72,17 @@ public class Gamemanager : MonoBehaviour
                 int x = Random.Range(-1, 2);
                 Instantiate(grasses, new Vector3(x, 1f, z), grasses.rotation);
             }
+            if (randomNum < 5)
+            {
+
+                Instantiate(mist, new Vector3(0, 0, RandomMist), mist.rotation);
+            }
 
 
             Instantiate(laneWithoutPit, new Vector3(0, 0, zStart), laneWithoutPit.rotation);
             zStart += 10;
             z += 5;
+            RandomMist += 15;
         }
     }
 
